@@ -28,21 +28,25 @@ function CreateAccount(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/customers', {
-            first_name: values.firstName,
-            last_name: values.lastName,
-            address: {
-                street_number: values.streetNum,
-                street_name: values.streetName,
-                city: values.city,
-                state: values.state,
-                zip: values.zip
+        axios.post('http://localhost:8000/new_player', {
+            username: values.username,
+            password: values.password,
+            customer: {
+                first_name: values.firstName,
+                last_name: values.lastName,
+                address: {
+                    street_number: values.streetNum,
+                    street_name: values.streetName,
+                    city: values.city,
+                    state: values.state,
+                    zip: values.zip
+                }
             }
         }).then((res) => {
             props.formSubmit(res)
         }).catch((err) => {
             console.log(err)
-            setErrMsg('Invalid Parameters')
+            setErrMsg(err.response.data.detail)
         })
     }
 
@@ -68,7 +72,7 @@ function CreateAccount(props) {
                 </div>
                 <input type="submit" value="Submit" />
             </form>
-            <h1>{errMsg}</h1>
+            <label>{errMsg}</label>
         </div>
     )
 }
