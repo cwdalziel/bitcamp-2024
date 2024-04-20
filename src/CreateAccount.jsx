@@ -2,15 +2,15 @@ import { useState } from 'react'
 import axios from 'axios'
 
 const initValues = {
-    username: 'test',
-    password: 'test',
-    firstName: 'John',
-    lastName: 'Doe',
-    streetNum: '1216',
-    streetName: 'Ellicot City',
-    city: 'Ellicot City',
-    state: 'CO',
-    zip: '81101'
+    username: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    streetNum: '',
+    streetName: '',
+    city: '',
+    state: '',
+    zip: ''
 }
 
 function CreateAccount(props) {
