@@ -32,6 +32,9 @@ class GameDB:
             
         return True
     
+    def user_exists(self, username: str):
+        return not username in self.data
+    
     def get_user_account_id(self, username: str, password: str) -> str | None:
         if username in self.data.keys():
             if password == self.data[username]['password']:
