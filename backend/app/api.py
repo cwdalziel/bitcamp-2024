@@ -1,11 +1,11 @@
 import os
+
+import aiohttp
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+from .gamedb import GameDB
 from pydantic import BaseModel
-
-import aiohttp
 
 API_HEAD = "http://api.nessieisreal.com"
 
@@ -13,6 +13,7 @@ load_dotenv()
 API_KEY = os.getenv("API_KEY")
 
 app = FastAPI()
+db = GameDB()
 
 origins = [
     "http://localhost:3000",
@@ -107,3 +108,16 @@ async def post_customer(customer: Customer) -> dict:
             json = customer.model_dump()
         ) as resp:
             return {"data": await resp.json()}
+        
+class Player(BaseModel):
+    username: str
+    password: str
+    account_id: str
+
+@app.post('/new_player')
+async def new_player(player: Player) -> dict:
+    status = db.new_user(player.username, player.password, player.account_id, _write = True)
+    
+    if status:
+        return {"data": "success"}
+    return {"data": "failure"}
