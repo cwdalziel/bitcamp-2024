@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import './App.css';
-import CreateAccount from './CreateAccount'
+import Login from './Login';
 
 function App() {
 
   const [accountID, setAccountID] = useState('')
 
-  const formSubmit = (res) => {
-    setAccountID(res.data.data.objectCreated._id)
+  const setID = (ID) => {
+    setAccountID(ID)
   }
 
   return (
     <div className="App">
       <header className="App-header">
-        {(accountID === '') ? <CreateAccount formSubmit={formSubmit} /> : <div>Logged In!</div>}
+        {(accountID === '') ? <Login setID={setID}/> : <div>Logged In!</div>}
       </header>
     </div>
   );
