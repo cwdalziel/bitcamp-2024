@@ -148,7 +148,10 @@ async def new_player(player: Player) -> dict:
                 json=player.customer.model_dump(),
             ) as resp:
                 data = await resp.json()
-                print(data)
+
+                if data['code'] >= 300:
+                    return data
+
                 id = data['objectCreated']['_id']
                 db.new_user(player.username, player.password, id, _write=True)
 
