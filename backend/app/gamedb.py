@@ -32,6 +32,13 @@ class GameDB:
             
         return True
     
+    def get_user_account_id(self, username: str, password: str) -> str | None:
+        if username in self.data.keys():
+            if password == self.data[username]['password']:
+                return self.data[username]['account_id']
+        
+        return None
+
 # XP
 # XP per second
 # Money
