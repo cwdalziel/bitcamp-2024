@@ -150,7 +150,7 @@ async def new_player(player: Player) -> dict:
                 data = await resp.json()
 
                 if data['code'] >= 300:
-                    return data
+                    raise HTTPException(status_code=data['code'], detail=data['message'])
 
                 id = data['objectCreated']['_id']
                 db.new_user(player.username, player.password, id, _write=True)
