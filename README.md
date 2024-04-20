@@ -79,5 +79,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### Actually running the environment
 
-Run `python3.10 backend/main.py`
+Run `python backend/main.py`
 Visit `http://0.0.0.0:8000` in your browser
