@@ -3,8 +3,8 @@ import CreateAccount from './CreateAccount'
 
 function App() {
 
-  const formSubmit = (values) => {
-    console.log(values)
+  const formSubmit = () => {
+    
   }
 
   return (
