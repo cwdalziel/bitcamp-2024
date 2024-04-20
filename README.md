@@ -70,3 +70,16 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Running the backend
+
+### Creating the environment
+
+1) Create a virtual environment for python with `python3.10 -m venv .venv`
+2) Switch to that environment with `.venv/bin/activate`
+3) Install required dependencies with `pip install -r backend/requirements.txt`
+
+### Actually running the environment
+
+Run `python backend/main.py`
+Visit `http://0.0.0.0:8000` in your browser
