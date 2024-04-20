@@ -73,11 +73,11 @@ class Customer(BaseModel):
     last_name: str
     address: Address
 
-@app.post("/customers/{id}/accounts")
-async def post_customer_accounts(id: str, account: Account) -> dict:
+@app.post("/customers")
+async def post_customer(customer: Customer) -> dict:
     async with aiohttp.ClientSession() as session:
         async with session.post(
-            f"{API_HEAD}/customers/{id}/accounts?key={API_KEY}",
-            json = account.model_dump()
+            f"{API_HEAD}/customers/?key={API_KEY}",
+            json = customer.model_dump()
         ) as resp:
             return {"data": await resp.json()}
