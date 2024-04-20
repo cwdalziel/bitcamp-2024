@@ -1,5 +1,10 @@
+import os
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 
 app = FastAPI()
 
@@ -19,4 +24,4 @@ app.add_middleware(
 
 @app.get("/", tags=["root"])
 async def read_root() -> dict:
-    return {"message": "hello :)"}
+    return {"message": f"hello :)"}
