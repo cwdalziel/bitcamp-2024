@@ -28,7 +28,7 @@ function Login(props) {
         <h1>Best App Ever?!?!</h1>
         <form>
             <input type='text' name='username' placeholder='Username' value={login.username} onChange={handleChange} />
-            <input type='text' name='password' placeholder='Password' value={login.password} onChange={handleChange} />
+            <input type='password' name='password' placeholder='Password' value={login.password} onChange={handleChange} />
             <input type="submit" value="Submit" />
         </form>
             <button onClick={() => setCreate(true)}>Create New Account</button> </> : <CreateAccount formSubmit={formSubmit} />}

@@ -2,6 +2,8 @@ import { useState } from 'react'
 import axios from 'axios'
 
 const initValues = {
+    username: 'test',
+    password: 'test',
     firstName: 'John',
     lastName: 'Doe',
     streetNum: '1216',
@@ -47,6 +49,10 @@ function CreateAccount(props) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
+                <div>
+                    <input type='text' name='username' placeholder='Username' value={values.username} onChange={handleChange} />
+                    <input type='password' name='password' placeholder='Password' value={values.password} onChange={handleChange} />
+                </div>
                 <div>
                     <input type='text' name='firstName' placeholder='First Name' value={values.firstName} onChange={handleChange} />
                     <input type='text' name='lastName' placeholder='Last Name' value={values.lastName} onChange={handleChange} />
