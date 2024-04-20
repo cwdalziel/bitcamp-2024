@@ -121,3 +121,15 @@ async def new_player(player: Player) -> dict:
     if status:
         return {"data": "success"}
     return {"data": "failure"}
+
+class PartialPlayer(BaseModel):
+    username: str
+    password: str
+
+@app.post('/get_player_id')
+async def read_player_id(partial: PartialPlayer) -> dict:
+    id = db.get_user_account_id(partial.username, partial.password)
+    
+    if id:
+        return {"data": "success", "id": id}
+    return {"data": 'failure'}

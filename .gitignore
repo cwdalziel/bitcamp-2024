@@ -181,4 +181,4 @@ dmypy.json
 cython_debug/
 
 # Project Specific
-players.json
+backend/players.json
