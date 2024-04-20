@@ -1,16 +1,19 @@
+import { useState } from 'react';
 import './App.css';
 import CreateAccount from './CreateAccount'
 
 function App() {
 
-  const formSubmit = () => {
-    
+  const [accountID, setAccountID] = useState('')
+
+  const formSubmit = (res) => {
+    setAccountID(res.data.data.objectCreated._id)
   }
 
   return (
     <div className="App">
       <header className="App-header">
-        <CreateAccount formSubmit={formSubmit} />
+        {(accountID === '') ? <CreateAccount formSubmit={formSubmit} /> : <div>Logged In!</div>}
       </header>
     </div>
   );
