@@ -2,7 +2,7 @@ import os
 
 import aiohttp
 from dotenv import load_dotenv
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from .gamedb import GameDB
 from pydantic import BaseModel
@@ -152,8 +152,8 @@ async def new_player(player: Player) -> dict:
                 id = data['objectCreated']['_id']
                 db.new_user(player.username, player.password, id, _write=True)
 
-        return {"status": "success", "id": id}
-    return {"status": "failure"}
+        return {"id": id}
+    raise HTTPException(status_code=400, detail="Username already in use.")
 
 
 class PartialPlayer(BaseModel):
@@ -166,5 +166,5 @@ async def read_player_id(partial: PartialPlayer) -> dict:
     id = db.get_user_account_id(partial.username, partial.password)
 
     if id:
-        return {"data": "success", "id": id}
-    return {"data": "failure"}
+        return {"id": id}
+    raise HTTPException(status_code=400, detail = "Incorrect username/password combination or username doesn't exist.")
