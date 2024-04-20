@@ -37,7 +37,7 @@ function CreateAccount(props) {
                 zip: values.zip
             }
         }).then((res) => {
-            props.formSubmit()
+            props.formSubmit(res)
         }).catch((err) => {
             console.log(err)
             setErrMsg('Invalid Parameters')
