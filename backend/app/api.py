@@ -36,14 +36,23 @@ async def get_url_json(url: str) -> dict:
 async def get_stats(username: str) -> dict:
     return db.get_user_stats(username, False)
 
-@app.get('/user/health/{username}')
+@app.get('/user/health/get/{username}')
 async def get_health(username: str) -> dict:
     return db.get_user_health(username)
 
-@app.get('user/enemyhealth/{username}')
+@app.get('user/health/set/{username}')
+async def set_health(username: str, health: int) -> dict:
+    db.set_user_health(username, health)
+    return {"status": True}
+
+@app.get('user/enemy/health/get/{username}')
 async def get_enemy_health(username: str) -> dict:
     return db.get_enemy_health(username)
 
+@app.get('user/enemy/health/set{username}')
+async def set_enemy_health(username: str, health: int) -> dict:
+    db.set_enemy_health(username, health)
+    return {"status": True}
 
 @app.get("/")
 async def read_root() -> dict:
