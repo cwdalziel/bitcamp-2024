@@ -79,12 +79,15 @@ class GameDB:
     
     def add_user_stat(self, username: str, stat: Stats) -> None:
         self.data[username]['stats'].append(stat)
+        write_data(self.data)
     
     def set_user_health(self, username: str, val: int) -> None:
         self.data[username]['health'] = val
+        write_data(self.data)
     
     def set_enemy_health(self, username: str, val: int) -> None:
         self.data[username]['enemy_health'] = val
+        write_data(self.data)
     
 # Things to add endpoints for:
 # 
