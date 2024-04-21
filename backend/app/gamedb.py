@@ -107,6 +107,9 @@ class GameDB:
         self.data[username]['enemy_damage'] = val
         write_data(self.data)
     
+    def get_user_id(self, username: str) -> int:
+        return self.data[username]['account_id']
+    
 # Things to add endpoints for:
 # 
 # Get user stats
