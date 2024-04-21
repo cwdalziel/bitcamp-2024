@@ -49,30 +49,30 @@ async def set_health(username: str, health: int) -> dict:
 async def get_enemy_health(username: str) -> dict:
     return {"data": db.get_enemy_health(username)}
 
-@app.get('user/enemy/health/set/{username}')
+@app.get('/user/enemy/health/set/{username}')
 async def set_enemy_health(username: str, health: int) -> dict:
     db.set_enemy_health(username, health)
     return {"status": True}
 
-@app.get('user/damage/get/{username}')
+@app.get('/user/damage/get/{username}')
 async def get_user_damage(username: str) -> dict:
     return {"data": db.get_user_damage(username)}
 
-@app.get('user/damage/set/{username}')
+@app.get('/user/damage/set/{username}')
 async def set_user_damage(username: str, dmg: int) -> dict:
     db.set_user_damage(username, dmg)
     return {"status": True}
 
-@app.get('user/enemy/damage/get/{username}')
+@app.get('/user/enemy/damage/get/{username}')
 async def get_enemy_damage(username: str) -> dict:
     return {"data": db.get_enemy_damage(username)}
 
-@app.get('user/enemy/damage/set/{username}')
+@app.get('/user/enemy/damage/set/{username}')
 async def set_enemy_damage(username: str, dmg: int) -> dict:
     db.set_enemy_damage(username, dmg)
     return {"status": True}
 
-@app.get('user/id/{username}')
+@app.get('/user/id/{username}')
 async def get_user_id(username: str) -> dict:
     return {"data": db.get_user_id(username)}
 
