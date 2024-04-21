@@ -32,6 +32,18 @@ async def get_url_json(url: str) -> dict:
         async with session.get(url) as resp:
             return await resp.json()
 
+@app.get('/user/stats/{username}')
+async def get_stats(username: str) -> dict:
+    return db.get_user_stats(username, False)
+
+@app.get('/user/health/{username}')
+async def get_health(username: str) -> dict:
+    return db.get_user_health(username)
+
+@app.get('user/enemyhealth/{username}')
+async def get_enemy_health(username: str) -> dict:
+    return db.get_enemy_health(username)
+
 
 @app.get("/")
 async def read_root() -> dict:
