@@ -62,9 +62,11 @@ function Budgeter(props) {
     }
 
     return (<div>
-        <img src ={bg} alt='background'/>
+        <div>
+        <img className="bg"src ={bg} alt='background'/>
         <img className="coinman" src ={coinman} height={512} width={512} alt='coinman'/>
         <img className="opposition" src ={opposition} height={512} width={512} alt='enemy'/>
+        </div>
         <div className="balance">
             <span>Balance: </span>{ balance >= 0 ? <span className='positive'>${balance}</span> : <span className='negative'>-${-balance}</span>}
         </div>
