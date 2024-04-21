@@ -41,7 +41,7 @@ function Login(props) {
 
     return (<>
         {!create ? <>
-            <h1>Best App Ever?!?!</h1>
+            <h1>Budget Hero</h1>
             <form onSubmit={handleSubmit}>
                 <input className="input" type='text' name='username' placeholder='Username' value={login.username} onChange={handleChange} />
                 <input className="input" type='password' name='password' placeholder='Password' value={login.password} onChange={handleChange} />
