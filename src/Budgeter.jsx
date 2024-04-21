@@ -78,7 +78,7 @@ function Budgeter(props) {
         </form>
         {transactions.map((entry, index) => (
             <div className="transaction" key={index}>
-                <div>${entry.amount}, {entry.desc}, {entry.date} </div>
+                <div>{entry.amount >= 0 ? <span className='positive'>${entry.amount}</span> : <span className='negative'>-${-entry.amount}</span>}, {entry.desc}, {entry.date} </div>
             </div>
         ))}
     </div>
