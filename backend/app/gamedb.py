@@ -47,9 +47,9 @@ class GameDB:
             'password': password,
             'account_id': account_id,
             'stats': [],
-            'health': 100,
+            'health': 1000,
             'damage': 3,
-            'enemy_health': 15,
+            'enemy_health': 1000,
             'enemy_damage': 1,
             'enemy_id': 1,
             'enemies_defeated': 0

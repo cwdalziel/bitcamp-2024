@@ -102,13 +102,15 @@ async def get_user_enemy_id(username: str) -> dict:
 @app.post("/user/damage/{username}")
 async def user_deal_damage(username: str, damage: int) -> dict:
     e_hp = db.get_enemy_health(username) - (-(-damage // 2))
-    u_hp = min(db.get_user_health(username) + (damage // 2), 100)
+    u_hp = min(db.get_user_health(username) + (damage // 2), 10000)
     id = db.get_enemy_id(username)
     d = db.get_enemies_defeated(username)
     
     if e_hp <= 0:
-        db.set_enemy_health(username, 15)
+        db.set_enemy_health(username, 1000)
         id = (id + 1) % 3
+        if id == 0:
+            db.set_enemy_health(username, 5000)
         db.set_enemy_id(username, id)
         d += 1 + (-e_hp) // 15
         db.increment_enemies_defeated(username, 1 + (-e_hp) // 15)
