@@ -18,12 +18,13 @@ def load_data(path: str) -> dict:
 
 def write_data(data: dict, path: str = 'backend/players.json') -> None:
     with open(path, 'w') as f:
-        f.write(dataclass_json_dump())
+        f.write(dataclass_json_dump(data))
 
 @dataclass
 class Stats:
     amount: int = 0
     date: str = ""
+    desc: str = ""
     
 class GameDB:
     def __init__(self, data_path: str = 'backend/players.json'):
