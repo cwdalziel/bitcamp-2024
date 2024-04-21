@@ -70,9 +70,7 @@ class GameDB:
         
         return None
 
-    def get_user_stats(self, username: str, as_json = False) -> Stats:
-        if as_json:
-            return self.data[username]['stats']
+    def get_user_stats(self, username: str) -> list[Stats]:
         return self.data[username]['stats']
     
     def get_user_health(self, username: str) -> int:
