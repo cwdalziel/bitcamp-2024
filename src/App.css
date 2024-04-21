@@ -55,13 +55,24 @@ body {
 	}
 }
 
-input[type=text],input[type=password] {
+input[type=text],input[type=password],input[type=number],input[type=date] {
 	appearance: none;
 	border: none;
 	outline: none;
 	border-bottom: .2em solid #3c4043;
 	background: rgba(#E91E63, .2);
 	border-radius: .2em .2em 0 0;
+	padding: .4em;
+	color: #3c4043;
+  margin: 5px;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+}
+
+.transaction {
+  background: white;
+  border-radius: .2em .2em 0 0;
 	padding: .4em;
 	color: #3c4043;
   margin: 5px;

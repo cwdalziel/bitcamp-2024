@@ -22,8 +22,8 @@ function Login(props) {
         })
     }
 
-    const formSubmit = (res) => {
-        props.setID(res.data.id)
+    const formSubmit = (user) => {
+        props.setUser(user)
     }
 
     const handleSubmit = (e) => {
@@ -31,8 +31,8 @@ function Login(props) {
         axios.post('http://localhost:8000/get_player_id', {
             username: login.username,
             password: login.password,
-        }).then((res) => {
-            props.setID(res.data.id)
+        }).then(() => {
+            props.setUser(login.username)
         }).catch((err) => {
             console.log(err)
             setErrMsg(err.response.data.detail)

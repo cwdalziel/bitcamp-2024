@@ -42,8 +42,8 @@ function CreateAccount(props) {
                     zip: values.zip
                 }
             }
-        }).then((res) => {
-            props.formSubmit(res)
+        }).then(() => {
+            props.formSubmit(values.username)
         }).catch((err) => {
             console.log(err)
             setErrMsg(err.response.data.detail)

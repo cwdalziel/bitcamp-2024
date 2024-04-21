@@ -1,19 +1,20 @@
 import { useState } from 'react';
 import './App.css';
 import Login from './Login';
+import Budgeter from './Budgeter';
 
 function App() {
 
-  const [accountID, setAccountID] = useState('')
+  const [username, setUsername] = useState('')
 
-  const setID = (ID) => {
-    setAccountID(ID)
+  const setUser = (user) => {
+    setUsername(user)
   }
 
   return (
     <div className="App">
       <header className="App-header">
-        {(accountID === '') ? <Login setID={setID}/> : <div>Logged In!</div>}
+        {(username === '') ? <Login setUser={setUser}/> : <Budgeter user={username}/>}
       </header>
     </div>
   );
