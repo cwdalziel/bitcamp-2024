@@ -33,7 +33,7 @@ function Budgeter(props) {
 
     const update = (damage) => {
         axios.get('http://localhost:8000/user/stats/' + props.user).then((res) => {
-            setTransactions(res.data.data.sort((a, b) => {
+            setTransactions(res.data.data.reverse().sort((a, b) => {
                 return new Date(b.date) - new Date(a.date);
             }))
         }).catch((err) => {
