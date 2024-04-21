@@ -34,11 +34,11 @@ async def get_url_json(url: str) -> dict:
 
 @app.get('/user/stats/{username}')
 async def get_stats(username: str) -> dict:
-    return db.get_user_stats(username, False)
+    return {"data": db.get_user_stats(username, False)}
 
 @app.get('/user/health/get/{username}')
 async def get_health(username: str) -> dict:
-    return db.get_user_health(username)
+    return {"data": db.get_user_health(username)}
 
 @app.get('/user/health/set/{username}')
 async def set_health(username: str, health: int) -> dict:
@@ -47,7 +47,7 @@ async def set_health(username: str, health: int) -> dict:
 
 @app.get('/user/enemy/health/get/{username}')
 async def get_enemy_health(username: str) -> dict:
-    return db.get_enemy_health(username)
+    return {"data": db.get_enemy_health(username)}
 
 @app.get('user/enemy/health/set{username}')
 async def set_enemy_health(username: str, health: int) -> dict:
