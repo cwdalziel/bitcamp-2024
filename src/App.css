@@ -70,7 +70,7 @@ input[type=text],input[type=password],input[type=number],input[type=date] {
   box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
 }
 
-.transaction, .balance {
+.transaction, .balance, .health {
   background: white;
   border-radius: .2em .2em 0 0;
 	padding: .4em;
@@ -79,6 +79,10 @@ input[type=text],input[type=password],input[type=number],input[type=date] {
   border-radius: 24px;
   border-style: none;
   box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+}
+
+.health {
+  margin: 10px;
 }
 
 .positive {
@@ -203,4 +207,8 @@ div:empty {
 
 h1 {
   font-family: '8-bit';
+}
+
+.healthDisplay {
+  border: 20px;
 }
