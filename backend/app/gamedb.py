@@ -1,7 +1,16 @@
 import json
+import dataclasses
 from dataclasses import dataclass
 from os.path import exists
 
+class DataclassJSONEncoder(json.JSONEncoder):
+    def default(self, o):
+        if dataclasses.is_dataclass(o):
+            return dataclasses.asdict(o)
+        return super().default(o)
+
+def dataclass_json_dump(data: dict) -> str:
+    return json.dumps(data, cls=DataclassJSONEncoder, indent=2)
 
 def load_data(path: str) -> dict:
     with open(path, 'r') as f:
@@ -9,14 +18,13 @@ def load_data(path: str) -> dict:
 
 def write_data(data: dict, path: str = 'backend/players.json') -> None:
     with open(path, 'w') as f:
-        f.write(json.dumps(data, indent=2))
+        f.write(dataclass_json_dump())
 
 @dataclass
 class Stats:
-    xp: int = 0
-    xp_per_second: int = 1
+    amount: int = 0
+    date: str = ""
     
-
 class GameDB:
     def __init__(self, data_path: str = 'backend/players.json'):
         self.data_path = data_path
@@ -32,7 +40,7 @@ class GameDB:
         data = {
             'password': password,
             'account_id': account_id,
-            'player': {}
+            'stats': []
         }
         
         if username in self.data.keys():
@@ -55,9 +63,19 @@ class GameDB:
         
         return None
 
-    def get_user_stats(self, id: str) -> Stats: pass
+    def get_user_stats(self, username: str, as_json = False) -> Stats:
+        if as_json:
+            return self.data[username]['stats']
+        return self.data[username]['stats']
+    
+    
+    
+    
 
 # XP
 # XP per second
 # Money
 # Last Log-on
+
+# x = {"hey": Stats(0, 20)}
+# print(json.dumps(x))
