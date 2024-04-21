@@ -49,7 +49,7 @@ async def set_health(username: str, health: int) -> dict:
 async def get_enemy_health(username: str) -> dict:
     return {"data": db.get_enemy_health(username)}
 
-@app.get('user/enemy/health/set{username}')
+@app.get('user/enemy/health/set/{username}')
 async def set_enemy_health(username: str, health: int) -> dict:
     db.set_enemy_health(username, health)
     return {"status": True}
@@ -64,6 +64,13 @@ async def add_user_stat(username: str, stat: Stat) -> dict:
     db.add_user_stat(username=username, stat=Stats(stat.amount, stat.date, stat.desc))
     return {"status": "success"}
 
+@app.get('/user/balance/{username}')
+async def get_user_balance(username: str) -> dict:
+    total = 0
+    for s in db.get_user_stats(username):
+        total += s['amount']
+    
+    return {'data': total}
 
 
 @app.get("/")
