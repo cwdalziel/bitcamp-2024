@@ -34,11 +34,11 @@ async def get_url_json(url: str) -> dict:
 
 @app.get('/user/stats/{username}')
 async def get_stats(username: str) -> dict:
-    return db.get_user_stats(username, False)
+    return {"data": db.get_user_stats(username, False)}
 
 @app.get('/user/health/get/{username}')
 async def get_health(username: str) -> dict:
-    return db.get_user_health(username)
+    return {"data": db.get_user_health(username)}
 
 @app.get('/user/health/set/{username}')
 async def set_health(username: str, health: int) -> dict:
@@ -47,13 +47,22 @@ async def set_health(username: str, health: int) -> dict:
 
 @app.get('/user/enemy/health/get/{username}')
 async def get_enemy_health(username: str) -> dict:
-    return db.get_enemy_health(username)
+    return {"data": db.get_enemy_health(username)}
 
 @app.get('user/enemy/health/set{username}')
 async def set_enemy_health(username: str, health: int) -> dict:
     db.set_enemy_health(username, health)
     return {"status": True}
 
+class Stat(BaseModel):
+    amount: int = 0
+    date: str = ""
+    desc: str = ""
+
+@app.get('/user/stats/add')
+async def add_user_stat(username: str, stat: Stat) -> dict:
+    db.add_user_stat(username=username, stat=Stats(stat))
+    return {"status": "success"}
 
 
 
@@ -189,12 +198,3 @@ async def read_player_id(partial: PartialPlayer) -> dict:
         return {"id": id}
     raise HTTPException(status_code=400, detail = "Incorrect username/password combination or username doesn't exist.")
 
-class Stat(BaseModel):
-    amount: int = 0
-    date: str = ""
-    desc: str = ""
-
-@app.get('/user/addstat/')
-async def add_user_stat(username: str, stat: Stat) -> dict:
-    db.add_user_stat(username=username, stat=Stats(stat))
-    return {"status": "success"}
