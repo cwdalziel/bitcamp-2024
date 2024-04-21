@@ -4,7 +4,7 @@ import aiohttp
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from .gamedb import GameDB
+from .gamedb import GameDB, Stats
 from pydantic import BaseModel
 import json
 
@@ -32,11 +32,34 @@ async def get_url_json(url: str) -> dict:
         async with session.get(url) as resp:
             return await resp.json()
 
+@app.get('/user/stats/{username}')
+async def get_stats(username: str) -> dict:
+    return db.get_user_stats(username, False)
+
+@app.get('/user/health/get/{username}')
+async def get_health(username: str) -> dict:
+    return db.get_user_health(username)
+
+@app.get('/user/health/set/{username}')
+async def set_health(username: str, health: int) -> dict:
+    db.set_user_health(username, health)
+    return {"status": True}
+
+@app.get('/user/enemy/health/get/{username}')
+async def get_enemy_health(username: str) -> dict:
+    return db.get_enemy_health(username)
+
+@app.get('user/enemy/health/set{username}')
+async def set_enemy_health(username: str, health: int) -> dict:
+    db.set_enemy_health(username, health)
+    return {"status": True}
+
+
+
 
 @app.get("/")
 async def read_root() -> dict:
     return {"message": f"hello :)"}
-
 
 # account endpoints
 @app.get("/customers/{id}/accounts")
@@ -45,26 +68,22 @@ async def read_customer_accounts(id: str) -> dict:
         "data": await get_url_json(f"{API_HEAD}/customers/{id}/accounts?key={API_KEY}")
     }
 
-
 # customer endpoints
 @app.get("/accounts/{id}/customer")
 async def read_account_customer(id: str) -> dict:
     data = await get_url_json(f"{API_HEAD}/accounts/{id}/customer?key={API_KEY}")
     return {"data": data}
 
-
 # bill endpoints
 @app.get("/accounts/{id}/bills")
 async def read_account_bills(id: str) -> dict:
     return {"data": await get_url_json(f"{API_HEAD}/accounts/{id}/bills?key={API_KEY}")}
-
 
 @app.get("/customers/{id}/bills")
 async def read_customer_bills(id: str) -> dict:
     return {
         "data": await get_url_json(f"{API_HEAD}/customers/{id}/bills?key={API_KEY}")
     }
-
 
 # transfer endpoints
 @app.get("/accounts/{id}/transfers")
@@ -75,14 +94,12 @@ async def read_account_transfers(id: str, type: str) -> dict:
         )
     }
 
-
 # purchase endpoints
 @app.get("/accounts/{id}/purchases")
 async def read_account_purchases(id: str) -> dict:
     return {
         "data": await get_url_json(f"{API_HEAD}/accounts/{id}/purchases?key={API_KEY}")
     }
-
 
 # deposit endpoints
 @app.get("/accounts/{id}/deposits")
@@ -171,3 +188,13 @@ async def read_player_id(partial: PartialPlayer) -> dict:
     if id:
         return {"id": id}
     raise HTTPException(status_code=400, detail = "Incorrect username/password combination or username doesn't exist.")
+
+class Stat(BaseModel):
+    amount: int = 0
+    date: str = ""
+    desc: str = ""
+
+@app.get('/user/addstat/')
+async def add_user_stat(username: str, stat: Stat) -> dict:
+    db.add_user_stat(username=username, stat=Stats(stat))
+    return {"status": "success"}
