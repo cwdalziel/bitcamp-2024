@@ -4,7 +4,7 @@ import aiohttp
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from .gamedb import GameDB
+from .gamedb import GameDB, Stats
 from pydantic import BaseModel
 import json
 
@@ -40,7 +40,7 @@ async def get_stats(username: str) -> dict:
 async def get_health(username: str) -> dict:
     return db.get_user_health(username)
 
-@app.get('user/enemyhealth/{username}')
+@app.get('/user/enemyhealth/{username}')
 async def get_enemy_health(username: str) -> dict:
     return db.get_enemy_health(username)
 
@@ -187,7 +187,9 @@ async def read_player_id(partial: PartialPlayer) -> dict:
 class Stat(BaseModel):
     amount: int = 0
     date: str = ""
+    desc: str = ""
 
-@app.post('/user/addstat/')
-async def add_user_stat(username: str, stat: Stat):
+@app.get('/user/addstat/')
+async def add_user_stat(username: str, stat: Stat) -> dict:
     db.add_user_stat(username=username, stat=Stats(stat))
+    return {"status": "success"}
