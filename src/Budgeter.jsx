@@ -63,12 +63,12 @@ function Budgeter(props) {
 
     return (<div>
         <div>
-        <img className="bg"src ={bg} alt='background'/>
-        <img className="coinman" src ={coinman} height={512} width={512} alt='coinman'/>
-        <img className="opposition" src ={opposition} height={512} width={512} alt='enemy'/>
+            <img className="bg" src={bg} height={800} width={800} alt='background' />
+            <img className="coinman" src={coinman} height={512} width={512} alt='coinman' />
+            <img className="opposition" src={opposition} height={400} width={400} alt='enemy' />
         </div>
         <div className="balance">
-            <span>Balance: </span>{ balance >= 0 ? <span className='positive'>${balance}</span> : <span className='negative'>-${-balance}</span>}
+            <span>Balance: </span>{balance >= 0 ? <span className='positive'>${balance}</span> : <span className='negative'>-${-balance}</span>}
         </div>
         <form className="form" onSubmit={handleSubmit}>
             <input type='number' name='amount' placeholder='Amount' value={transaction.amount} onChange={handleChange} />
