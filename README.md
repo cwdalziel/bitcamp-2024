@@ -1,85 +1,40 @@
-# Bitcamp 2024
+![logo](icon.png)
 
-# Getting Started with Create React App
+## Budget Hero is a finance-tracking website
+We built budget hero to gamify the experience of saving money. In this project, you'll defeat bad credit, overcome gambling addiction, and play the stock market safe—literally. Your character, Mr. Coin, will fight against these forces on your behalf.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How it works
+Budget Hero has its own backend, which calls the `nessieisreal` CapitalOne API and allows you to track your finances. Whenever you add a positive transaction, whether that be a check, money transfer, or sale, Mr. Coin will attack the enemies on your behalf. On the other hand, if you lose money, due to debt, purchases, or any other reason, Mr. Coin will lose his health. Try to defeat the largest number of enemies before losing all of your HP! 
 
-## Available Scripts
+## Developers:
 
-In the project directory, you can run:
+* [cwdalziel](https://github.com/cwdalziel) - Frontend / React App
+* [nkasica](https://github.com/nkasica) - Backend / Artwork
+* [yuwex](https://github.com/yuwex) - Backend / Database
 
-### `npm start`
+## Running the Project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Frontend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This projet's frontend was created with [Create React App](https://github.com/facebook/create-react-app). 
+After installing `npm` on your device, use the following command to build this project.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Then, start this project with the following command.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `npm start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Backend
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-# Running the backend
-
-### Creating the environment
+This project's backend was created with [FastAPI](https://fastapi.tiangolo.com/).
+To set up the backend, follow these steps:
 
 1) Create a virtual environment for python with `python3.10 -m venv .venv`
 2) Switch to that environment with `source .venv/bin/activate`
 3) Install required dependencies with `pip install -r backend/requirements.txt`
 
-### Actually running the environment
+To run the backend, do the following:
 
-Run `python backend/main.py`
-Visit `http://0.0.0.0:8000` in your browser
+1) Ensure you are using the virtual environment. If not, repeat step 2.
+2) Run `python backend/main.py`
