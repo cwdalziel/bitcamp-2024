@@ -27,6 +27,9 @@ class Stats:
     amount: int = 0
     date: str = ""
     desc: str = ""
+
+    def __getitem__(self, item):
+        return getattr(self, item)
     
 class GameDB:
     def __init__(self, data_path: str = 'backend/players.json'):
