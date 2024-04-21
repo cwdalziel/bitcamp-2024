@@ -34,7 +34,7 @@ async def get_url_json(url: str) -> dict:
 
 @app.get('/user/stats/{username}')
 async def get_stats(username: str) -> dict:
-    return {"data": db.get_user_stats(username, False)}
+    return {"data": db.get_user_stats(username)}
 
 @app.get('/user/health/get/{username}')
 async def get_health(username: str) -> dict:
