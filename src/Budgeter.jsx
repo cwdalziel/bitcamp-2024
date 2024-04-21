@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import bg from './bg_1.gif'
+import coinman from './New_Piskel_1.gif'
+import opposition from './New_Piskel.gif'
 
 const initTransaction = {
     amount: 0,
@@ -15,7 +18,7 @@ function Budgeter(props) {
 
     useEffect(() => {
         update()
-    }, [])
+    })
 
     const update = () => {
         axios.get('http://localhost:8000/user/stats/' + props.user).then((res) => {
@@ -59,10 +62,13 @@ function Budgeter(props) {
     }
 
     return (<div>
-        <div>
-            Balance: {balance}
+        <img src ={bg} alt='background'/>
+        <img className="coinman" src ={coinman} height={512} width={512} alt='coinman'/>
+        <img className="opposition" src ={opposition} height={512} width={512} alt='enemy'/>
+        <div className="balance">
+            <span>Balance: </span>{ balance >= 0 ? <span className='positive'>${balance}</span> : <span className='negative'>-${-balance}</span>}
         </div>
-        <form onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
             <input type='number' name='amount' placeholder='Amount' value={transaction.amount} onChange={handleChange} />
             <input type='date' name='date' value={transaction.date} onChange={handleChange} />
             <input type='text' name='desc' placeholder='Desciption' value={transaction.desc} onChange={handleChange} />
@@ -70,7 +76,7 @@ function Budgeter(props) {
         </form>
         {transactions.map((entry, index) => (
             <div className="transaction" key={index}>
-                <div>{entry.amount} {entry.desc} {entry.date} </div>
+                <div>${entry.amount}, {entry.desc}, {entry.date} </div>
             </div>
         ))}
     </div>
