@@ -40,7 +40,9 @@ class GameDB:
         data = {
             'password': password,
             'account_id': account_id,
-            'stats': []
+            'stats': [],
+            'health': 0,
+            'enemy_health': 0
         }
         
         if username in self.data.keys():
@@ -68,14 +70,16 @@ class GameDB:
             return self.data[username]['stats']
         return self.data[username]['stats']
     
-    
-    
-    
+    def get_user_health(self, username: str) -> int:
+        return self.data[username]['health']
 
-# XP
-# XP per second
-# Money
-# Last Log-on
-
-# x = {"hey": Stats(0, 20)}
-# print(json.dumps(x))
+    def get_enemy_health(self, username: str) -> int:
+        return self.data[username]['enemy_health']
+    
+    
+# Things to add endpoints for:
+# 
+# Get user stats
+# Get user health
+# Get enemy health
+# 
