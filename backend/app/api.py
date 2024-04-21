@@ -183,3 +183,11 @@ async def read_player_id(partial: PartialPlayer) -> dict:
     if id:
         return {"id": id}
     raise HTTPException(status_code=400, detail = "Incorrect username/password combination or username doesn't exist.")
+
+class Stat(BaseModel):
+    amount: int = 0
+    date: str = ""
+
+@app.post('/user/addstat/')
+async def add_user_stat(username: str, stat: Stat):
+    db.add_user_stat(username=username, stat=Stats(stat))
