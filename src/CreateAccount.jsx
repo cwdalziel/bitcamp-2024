@@ -70,9 +70,9 @@ function CreateAccount(props) {
                     <input type='text' name='state' placeholder='State' value={values.state} onChange={handleChange} />
                     <input type='text' name='zip' placeholder='Zip Code' value={values.zip} onChange={handleChange} />
                 </div>
-                <input type="submit" value="Submit" />
+                <input className="button" type="submit" value="Submit" />
             </form>
-            <label>{errMsg}</label>
+            <div className="error-msg" >{errMsg}</div>
         </div>
     )
 }

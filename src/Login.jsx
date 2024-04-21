@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import CreateAccount from './CreateAccount'
 import axios from 'axios'
+import './App.css';
 
 const initLogin = {
     username: '',
@@ -42,12 +43,12 @@ function Login(props) {
         {!create ? <>
             <h1>Best App Ever?!?!</h1>
             <form onSubmit={handleSubmit}>
-                <input type='text' name='username' placeholder='Username' value={login.username} onChange={handleChange} />
-                <input type='password' name='password' placeholder='Password' value={login.password} onChange={handleChange} />
-                <input type="submit" value="Submit" />
+                <input className="input" type='text' name='username' placeholder='Username' value={login.username} onChange={handleChange} />
+                <input className="input" type='password' name='password' placeholder='Password' value={login.password} onChange={handleChange} />
+                <input className="button" type="submit" value="Submit" />
             </form>
-            <button onClick={() => setCreate(true)}>Create New Account</button>
-            <label>{errMsg}</label>
+            <button className="button" onClick={() => setCreate(true)}>Create New Account</button>
+            <div className="error-msg">{errMsg}</div>
         </>
             : <CreateAccount formSubmit={formSubmit} />}
     </>
