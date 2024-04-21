@@ -1,10 +1,10 @@
 ![logo](icon.png)
 
 ## Budget Hero is a finance-tracking website
-We built budget hero to gamify the experience of saving money. In this project, you'll defeat bad credit, overcome gambling addiction, and play the stock market safe—literally. Your character, Mr. Coin, will fight against these forces on your behalf.
+We built Budget Hero to gamify the experience of saving money. In this project, you'll defeat bad credit, overcome gambling addiction, and play the stock market safe—literally. Your character, Mr. Coin, will fight against these forces on your behalf.
 
 ## How it works
-Budget Hero has its own backend, which calls the `nessieisreal` CapitalOne API and allows you to track your finances. Whenever you add a positive transaction, whether that be a check, money transfer, or sale, Mr. Coin will attack the enemies on your behalf. On the other hand, if you lose money, due to debt, purchases, or any other reason, Mr. Coin will lose his health. Try to defeat the largest number of enemies before losing all of your HP! 
+Budget Hero has its own backend, which calls the `nessieisreal` CapitalOne API and allows you to track your finances. Whenever you add a positive transaction, whether that be a check, money transfer, or sale, Mr. Coin will attack the enemies on your behalf. On the other hand, if you lose money due to debt, purchases, or any other reason, Mr. Coin will lose his health. Try to defeat the largest number of enemies before losing all of your HP! 
 
 ## Developers:
 
