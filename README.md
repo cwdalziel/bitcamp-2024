@@ -76,7 +76,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### Creating the environment
 
 1) Create a virtual environment for python with `python3.10 -m venv .venv`
-2) Switch to that environment with `.venv/bin/activate`
+2) Switch to that environment with `source .venv/bin/activate`
 3) Install required dependencies with `pip install -r backend/requirements.txt`
 
 ### Actually running the environment
