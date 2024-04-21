@@ -113,12 +113,12 @@ async def user_deal_damage(username: str, damage: int) -> dict:
             db.set_enemy_health(username, 5000)
         db.set_enemy_id(username, id)
         d += 1 + (-e_hp) // 15
-        db.increment_enemies_defeated(username, 1 + (-e_hp) // 15)
+        db.increment_enemies_defeated(username, 1 + (-e_hp) // 1000)
         return {
             'enemy_killed': True,
             'player_killed': False,
             'enemy_id': id,
-            'enemy_hp': 15,
+            'enemy_hp': db.get_enemy_health(username),
             'user_hp': u_hp,
             'enemies_defeated': d
         }
