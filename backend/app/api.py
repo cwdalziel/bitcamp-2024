@@ -26,7 +26,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 async def get_url_json(url: str) -> dict:
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as resp:
@@ -94,6 +93,59 @@ async def get_user_balance(username: str) -> dict:
     
     return {'data': total}
 
+# enemy id
+@app.get("/user/enemy/id/{username}")
+async def get_user_enemy_id(username: str) -> dict:
+    return {'id': db.get_enemy_id(username)}
+
+# deal damage
+@app.post("/user/damage/{username}")
+async def user_deal_damage(username: str, damage: int) -> dict:
+    e_hp = db.get_enemy_health(username) - (-(-damage // 2))
+    u_hp = min(db.get_user_health(username) + (damage // 2), 100)
+    id = db.get_enemy_id(username)
+    d = db.get_enemies_defeated(username)
+    
+    if e_hp <= 0:
+        db.set_enemy_health(username, 15)
+        id = (id + 1) % 3
+        db.set_enemy_id(username, id)
+        d += 1 + (-e_hp) // 15
+        db.increment_enemies_defeated(username, 1 + (-e_hp) // 15)
+        return {
+            'enemy_killed': True,
+            'player_killed': False,
+            'enemy_id': id,
+            'enemy_hp': 15,
+            'user_hp': u_hp,
+            'enemies_defeated': d
+        }
+    
+    if u_hp <= 0:
+        return {
+            'enemy_killed': False,
+            'player_killed': True,
+            'enemy_id': id,
+            'enemy_hp': e_hp,
+            'user_hp': 0,
+            'enemies_defeated': d
+        }
+        
+    db.set_user_health(username, u_hp)
+    db.set_enemy_health(username, e_hp)
+    
+    return {
+        'enemy_killed': False,
+        'player_killed': False,
+        'enemy_id': id,
+        'enemy_hp': e_hp,
+        'user_hp': u_hp,
+        'enemies_defeated': d
+    }
+    
+@app.get("/user/enemy/defeated/{username}")    
+async def get_enemies_defeated(username: str) -> dict:
+    return {'data': db.get_enemies_defeated(username)}
 
 @app.get("/")
 async def read_root() -> dict:

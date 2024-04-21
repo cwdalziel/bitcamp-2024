@@ -50,7 +50,9 @@ class GameDB:
             'health': 100,
             'damage': 3,
             'enemy_health': 15,
-            'enemy_damage': 1
+            'enemy_damage': 1,
+            'enemy_id': 1,
+            'enemies_defeated': 0
         }
         
         if username in self.data.keys():
@@ -111,9 +113,16 @@ class GameDB:
     def get_user_id(self, username: str) -> int:
         return self.data[username]['account_id']
     
-# Things to add endpoints for:
-# 
-# Get user stats
-# Get user health
-# Get enemy health
-# 
+    def get_enemy_id(self, username: str) -> int:
+        return self.data[username]['enemy_id']
+    
+    def set_enemy_id(self, username: str, id: int) -> int:
+        self.data[username]['enemy_id'] = id
+        write_data(self.data)
+    
+    def get_enemies_defeated(self, username: str) -> int:
+        return self.data[username]['enemies_defeated']
+
+    def increment_enemies_defeated(self, username: str, i = 0) -> int:
+        self.data[username]['enemies_defeated'] = self.get_enemies_defeated(username) + i
+        write_data(self.data)
