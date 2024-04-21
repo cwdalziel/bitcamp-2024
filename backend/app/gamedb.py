@@ -44,8 +44,10 @@ class GameDB:
             'password': password,
             'account_id': account_id,
             'stats': [],
-            'health': 0,
-            'enemy_health': 0
+            'health': 100,
+            'damage': 3,
+            'enemy_health': 15,
+            'enemy_damage': 1
         }
         
         if username in self.data.keys():
@@ -88,6 +90,23 @@ class GameDB:
     def set_enemy_health(self, username: str, val: int) -> None:
         self.data[username]['enemy_health'] = val
         write_data(self.data)
+
+    def get_user_damage(self, username: str) -> int:
+        return self.data[username]['damage']
+    
+    def set_user_damage(self, username: str, val: int) -> None:
+        self.data[username]['damage'] = val
+        write_data(self.data)
+
+    def get_enemy_damage(self, username: str) -> int:
+        return self.data[username]['enemy_damage']
+    
+    def set_enemy_damage(self, username: str, val: int) -> None:
+        self.data[username]['enemy_damage'] = val
+        write_data(self.data)
+    
+    def get_user_id(self, username: str) -> int:
+        return self.data[username]['account_id']
     
 # Things to add endpoints for:
 # 
