@@ -33,7 +33,7 @@ function Budgeter(props) {
 
     const update = (damage) => {
         axios.get('http://localhost:8000/user/stats/' + props.user).then((res) => {
-            setTransactions(res.data.data.sort((a, b) => {
+            setTransactions(res.data.data.reverse().sort((a, b) => {
                 return new Date(b.date) - new Date(a.date);
             }))
         }).catch((err) => {
@@ -80,7 +80,7 @@ function Budgeter(props) {
         })
     }
 
-    return (<div>
+    return (<>
         <div>
             <div style={{display: 'flex',alignItems: 'center',justifyContent: 'center',}}>
                 <span className="health">Player Health: {userHP}</span>
@@ -104,7 +104,7 @@ function Budgeter(props) {
                 <div>{entry.amount >= 0 ? <span className='positive'>${entry.amount}</span> : <span className='negative'>-${-entry.amount}</span>}, {entry.desc}, {entry.date} </div>
             </div>
         ))}
-    </div>
+    </>
     )
 }
 
