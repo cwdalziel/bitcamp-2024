@@ -77,9 +77,9 @@ class Stat(BaseModel):
     date: str = ""
     desc: str = ""
 
-@app.get('/user/stat/add')
+@app.post('/user/stats/add')
 async def add_user_stat(username: str, stat: Stat) -> dict:
-    db.add_user_stat(username=username, stat=Stats(stat))
+    db.add_user_stat(username=username, stat=Stats(stat.amount, stat.date, stat.desc))
     return {"status": "success"}
 
 

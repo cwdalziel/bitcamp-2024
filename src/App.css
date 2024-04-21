@@ -154,3 +154,12 @@ input[type=text],input[type=password] {
 div:empty {
   display: none;
 }
+
+@font-face {
+  font-family: '8-bit';
+  src: url('../public/slkscrb.ttf');
+}
+
+h1 {
+  font-family: '8-bit';
+}

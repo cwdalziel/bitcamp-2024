@@ -17,8 +17,10 @@ def load_data(path: str) -> dict:
         return json.loads(f.read())
 
 def write_data(data: dict, path: str = 'backend/players.json') -> None:
+    data = dataclass_json_dump(data)
+    
     with open(path, 'w') as f:
-        f.write(dataclass_json_dump(data))
+        f.write(data)
 
 @dataclass
 class Stats:
