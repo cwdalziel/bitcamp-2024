@@ -6,15 +6,20 @@ import Budgeter from './Budgeter';
 function App() {
 
   const [username, setUsername] = useState('')
+  const [gameOver, setGameOver] = useState(false)
 
   const setUser = (user) => {
     setUsername(user)
   }
 
+  const lose = () => {
+    setGameOver(true)
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        {(username === '') ? <Login setUser={setUser}/> : <Budgeter user={username}/>}
+        {gameOver ? <h1>You Lose</h1> : (username === '') ? <Login setUser={setUser}/> : <Budgeter lose={lose} user={username}/>}
       </header>
     </div>
   );
