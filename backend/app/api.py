@@ -72,6 +72,10 @@ async def set_enemy_damage(username: str, dmg: int) -> dict:
     db.set_enemy_damage(username, dmg)
     return {"status": True}
 
+@app.get('user/id/{username}')
+async def get_user_id(username: str) -> dict:
+    return {"data": db.get_user_id(username)}
+
 class Stat(BaseModel):
     amount: int = 0
     date: str = ""
